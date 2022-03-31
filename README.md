@@ -7,6 +7,7 @@
   <li>SqlServer e migrations;</li>
   <li>Angular e TypeScript para o Frontend;</li>
   <li>E Bootstrap para o estilo;</li>
+  <li>Documentei a API utilizando o Swagger, está na rota /documentation</li>
 </ul>
 <p>Procurei utilizar também conceitos de:</p>
 <ul>
