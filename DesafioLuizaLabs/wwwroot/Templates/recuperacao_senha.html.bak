@@ -1,0 +1,6 @@
+<html>
+    <body>
+        <p>Olá, segue link para recuperação da senha:
+        <br/><br/>Sua nova senha é <b>##SENHA##</b>.<br/>Você será redirecionado para alteração da senha após o login.</p>
+    </body>
+</html>

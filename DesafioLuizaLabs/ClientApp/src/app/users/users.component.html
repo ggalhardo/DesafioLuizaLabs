@@ -1,0 +1,109 @@
+
+
+<p *ngIf="isAuthenticated && !showChangePassword">Bem vindo ({{userLogged?.user?.name}})</p>
+<div *ngIf="isAuthenticated && !showChangePassword" class="form-group">
+  <button type="submit" class="btn btn-warning" (click)="logout()">Sair</button>
+</div>
+<p *ngIf="isAuthenticated && !showChangePassword">Usuários ({{users?.length}})</p>
+<div *ngIf="showList">
+  <div *ngIf="isAuthenticated && !showChangePassword">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row">{{user.id}}</th>
+          <th scope="row">{{user.name}}</th>
+          <th scope="row">{{user.email}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!showList && !showForgotPassword && !showChangePassword">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputName">Nome:</label>
+      <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Nome" [(ngModel)]="user.name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail">Email:</label>
+      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" [(ngModel)]="user.email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail">Senha:</label>
+      <input type="password" class="form-control" id="exampleInputSenha" placeholder="Senha" [(ngModel)]="user.senha" name="senha">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail">Confirmar Senha:</label>
+      <input type="password" class="form-control" id="exampleInputConfirmarSenha" placeholder="Confirmar Senha" [(ngModel)]="user.ConfirmacaoSenha" name="ConfirmacaoSenha">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="save()">Salvar</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" (click)="voltar()">Voltar</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="showChangePassword && isAuthenticated">
+  <form>
+    <p>Para continuar, realize a alteração da senha gerada automaticamente.</p>
+    <div class="form-group">
+      <label for="exampleInputEmail">Senha:</label>
+      <input type="password" class="form-control" id="exampleInputSenha" placeholder="Senha" [(ngModel)]="userChancePassword.senha" name="senha">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail">Confirmar Senha:</label>
+      <input type="password" class="form-control" id="exampleInputConfirmarSenha" placeholder="Confirmar Senha" [(ngModel)]="userChancePassword.confirmacaosenha" name="confirmacaosenha">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="change_password()">Alterar Senha</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!isAuthenticated && showList && !showForgotPassword">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail">Email:</label>
+      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" [(ngModel)]="userLogin.email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail">Senha:</label>
+      <input type="password" class="form-control" id="exampleInputSenha" placeholder="Senha" [(ngModel)]="userLogin.senha" name="senha" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="authenticate()">Login</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" (click)="showForgotPassword = !showForgotPassword">{{showList ? 'Esqueci minha senha' : 'Login'}}</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="showList = !showList">{{showList ? 'Cadastrar-se' : 'Login'}}</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="showForgotPassword">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail">Email:</label>
+      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" [(ngModel)]="userLogin.email" name="email" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="forgot_password()">Enviar E-mail de recuperação</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" (click)="voltar()">Voltar</button>
+    </div>
+  </form>
+</div>
